@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
 
 # CSS to set the background image
 def add_bg_from_local():
@@ -23,12 +24,25 @@ st.subheader("A Data-Driven Approach to Champion, Meta, and Role Analysis")
 # Create a sub-subheader using Markdown
 st.markdown("#### Group members: Vansh, Joshua, Enya, Derek, and Eric")
 
+# Worlds Image
+# Create two columns
+col1, col2 = st.columns(2)
+
+# Load and resize the images
+img1 = Image.open('./static/damwon.jpg').resize((400, 300))  # Specify desired width and height
+img2 = Image.open('./static/edg.jpeg').resize((400, 300))  # Specify desired width and height
+# Place the images in the respective columns
+with col1:
+    st.image(img1)  # Adjust height as needed
+
+with col2:
+    st.image(img2)  # Ensure the same height
+
 # Background Section
 st.markdown("<u><h2>Background</h2></u>", unsafe_allow_html=True)
-st.write("""
-League is a globally popular esports game[4], with a World Championship featuring teams 
-from major regions like South Korea, China, Europe and NA. Players select from many champions, but few are strong in the current meta. Our models will use data from the Worlds patch (14.18)[5] to identify meta champions and 2024 season data to rank player proficiency. We will calculate role impact to assign player scores, which will be aggregated to predict team performance at Worlds. Our dataset includes statistics from players and overall games from this past year in .csv format.
-""")
+st.markdown("""
+_League of Legends_ is a globally popular esports game<sup>[4]</sup>, with a **World Championship (Worlds)** featuring teams from major regions like **South Korea, China, Europe** and **NA**. Current papers have analyzed League with different ML models. (Arık, 2023) studies a LightGBM classifier<sup>[1]</sup>, (Bahrololloomi et al., 2022) utilize a GradBoost-based model<sup>[2]</sup>, and (Shen, 2022) implements a voting classifier<sup>[3]</sup> for results prediction of games based on player and game data. Our models will **predict the Worlds winner** via data from the **Worlds patch (14.18)<sup>[5]</sup>**. First, we will identify meta champions; then, we will analyze **strong players** based on the meta. We will calculate **role impact** to proportionate player strength, **aggregating** to predict team performance at Worlds. Our dataset includes statistics from players and overall games from this year in .csv format.
+""", unsafe_allow_html=True)
 
 # Problem Definition Section
 st.markdown("<u><h2>Problem Definition</h2></u>", unsafe_allow_html=True)
@@ -36,59 +50,40 @@ st.write("""- **Problem**: Esports outcomes, especially in the League of Legends
 - **Motivation**: Analyzing the meta, player strengths, and role impact can provide deeper insights into team performance, making it valuable for teams, fans, and analysts.
 """)
 
+# Methods Section
+st.markdown("<u><h2>Methods</h2></u>", unsafe_allow_html=True)
 
-# Data Preprocessing Section
-st.markdown("<u><h2>Data Preprocessing</h2></u>", unsafe_allow_html=True)
+st.markdown("<u><h4>Data Preprocessing</h4></u>", unsafe_allow_html=True)
 st.write("""- **Data Cleaning**: Remove duplicates, handle missing values, and ensure consistent formatting for champions, roles, and player stats.
 - **Feature Encoding**: Use one-hot encoding or label encoding for champions, regions, and roles.
-- **Normalization**: Normalize stats like KDA, damage, and pick rates to ensure consistency across datasets.
+- **Normalization**: Normalize stats like **KDA**, **damage**, and **pick rates** to ensure consistency across datasets.
 """)
 
-# Clustering Section
-st.markdown("<u><h2>Clustering (Unsupervised Learning)</h2></u>", unsafe_allow_html=True)
-st.write("""
-Use K-Means to cluster players based on champion performance, in-game stats, and role proficiency, identifying top performers. K-Means can also cluster champions frequently picked together, revealing potential synergies and meta insights.
+# ML Algorithms
+st.markdown("<u><h4>ML Algorithms/Models</h4></u>", unsafe_allow_html=True)
+st.write("""- **Clustering (Unsupervised Learning)**: **K-Means** can cluster players based on various stats, identifying top performers. **K-Means** can also cluster champions frequently picked together, revealing potential synergies and meta insights.
+- **K-Nearest Neighbors (KNN)**: **KNN** will predict if a champion is meta based on win rates and pick rates, classifying them based on similar champions. **KNN** will also find similar players in the same role, helping infer role impact by averaging outcomes of comparable players.
+- **Linear Regression Model**: **Linear regression** will map player, meta, and champion data to optimized functions, predicting game outcomes. The model’s coefficients will indicate the importance of factors like champion picks and role proficiency in determining team success.
+- **Long Short-Term Memory Networks**: **LSTM** networks will model player performance over time, helping capture trends in champion picks, player growth, and meta shifts. This will be crucial for predicting consistency and long-term success throughout the tournament.
 """)
 
-# K-Nearest Neighbors Section
-st.markdown("<u><h2>K-Nearest Neighbors (KNN)</h2></u>", unsafe_allow_html=True)
+# Results and Discussion
+st.markdown("<u><h2>(Potential) Results and Discussion</h2></u>", unsafe_allow_html=True)
+st.markdown("<u><h4>Classification Metrics</h4></u>", unsafe_allow_html=True)
 st.write("""
-KNN will predict if a champion is meta based on win rates and pick rates, classifying them based on similar champions. KNN will also find similar players in the same role, helping infer role impact by averaging outcomes of comparable players.
-""")
-
-# Linear Regression Section
-st.markdown("<u><h2>Linear Regression Model</h2></u>", unsafe_allow_html=True)
-st.write("""
-Linear regression will map player, meta, and champion data to optimized functions, predicting game outcomes. The model’s coefficients will indicate the importance of factors like champion picks and role proficiency in determining team success.
-""")
-
-# LSTM Section
-st.markdown("<u><h2>Long Short-Term Memory (LSTM) Networks</h2></u>", unsafe_allow_html=True)
-st.write("""
-LSTM networks will model player performance over time, helping capture trends in champion picks, player growth, and meta shifts. This will be crucial for predicting consistency and long-term success throughout the tournament.
-""")
-
-# Metrics Section
-st.markdown("<u><h2>Classification Metrics</h2></u>", unsafe_allow_html=True)
-st.write("""
-- **Accuracy**: Measures how often the model correctly predicts the outcome (whether a champion is meta or not, or the winner of a game).
+- **Accuracy and Precision**: Measures how often the model correctly predicts the outcome (whether a champion is meta or not, or the winner of a game) and which predicted outcomes matched.
 - **F1-Score**: A balance between precision and recall, useful for binary classification (e.g., predicting if a champion is meta or not). It can be further broken down into macro, micro, or weighted F1-scores based on the task.
-- **Precision**: Measures how many predicted positive outcomes (meta champions, game winners) are truly positive.
-- **Recall**: Measures how many actual positives (meta champions, winning teams) were identified by the model.
-- **ROC-AUC**: Used for binary classification to measure the area under the ROC curve, helpful in predicting champions or game outcomes based on probability estimates.
+- **ROC-AUC**: Uses binary classification to measure the area under the ROC curve, helpful in predicting champions/game outcomes based on probability.
 """)
 
-st.markdown("<u><h2>Regression Metrics</h2></u>", unsafe_allow_html=True)
+st.markdown("<u><h4>Regression Metrics</h4></u>", unsafe_allow_html=True)
 st.write("""
-- **R² Score (Coefficient of Determination)**:  Used to assess how well meta, player, and game outcome data fit into linear regression models for game predictions.
-- **Mean Squared Error (MSE)**: Used to measure the average squared difference between the predicted and actual values, applicable when predicting game outcomes or player scores.
+- **R² Score (Coefficient of Determination)**:  Assesses how well meta, player, and game outcome data fit into linear regression models for game predictions.
+- **Mean Squared Error (MSE)**: Measures the average squared difference between the predicted and actual values, applicable when predicting game outcomes or player scores.
 """)
 
 # Example of Data Display
-st.markdown("<u><h2>Data Example</h2></u>", unsafe_allow_html=True)
-st.write("""
-Here’s a mock data table for player statistics and team performance:
-""")
+st.markdown("<u><h4>Data Example</h4></u>", unsafe_allow_html=True)
 
 # Mock data (replace with real data)
 data = {
@@ -104,10 +99,17 @@ df = pd.DataFrame(data)
 st.dataframe(df)
 
 # Project Goals Section
-st.markdown("<u><h2>Project Goals</h2></u>", unsafe_allow_html=True)
+st.markdown("<u><h4>Project Goals</h4></u>", unsafe_allow_html=True)
 st.write("""
-Our project goals include achieving high accuracy and precision, while considering sustainability by using diverse regional data and ensuring ethical considerations, such as avoiding bias toward specific regions/playstyles. Proficiency in meta champions and key roles should impact team success, improving the accuracy of our championship predictions.
-We are trying to predict match winners based on player statistics and their champion proficiencies, champion synergies.
+We wish to achieve high accuracy and precision, while considering sustainability by using diverse regional data and ensuring ethical considerations, such as avoiding bias toward specific regions/playstyles. Proficiency in **meta champions** and key roles should impact team success, improving the accuracy of our championship predictions. 
+""")
+
+# Expected Results
+st.markdown("<u><h4>Expected Results</h4></u>", unsafe_allow_html=True)
+st.write("""
+- Predicting winners in the World’s 2024 bracket with 80%+  accuracy.
+- Gaining additional insight/visualizations into the meta of champions at Worlds and how champions impact team compositions.
+- Ranking the teams at Worlds across several metrics and game-states.
 """)
 
 # Set the title of the app

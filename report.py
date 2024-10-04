@@ -41,7 +41,7 @@ with col2:
 # Background Section
 st.markdown("<u><h2>Background</h2></u>", unsafe_allow_html=True)
 st.markdown("""
-_League of Legends_ is a globally popular esports game<sup>[4]</sup>, with a **World Championship (Worlds)** featuring teams from major regions like **South Korea, China, Europe** and **NA**. Current papers have analyzed League with different ML models. (Arık, 2023) studies a LightGBM classifier<sup>[1]</sup>, (Bahrololloomi et al., 2022) utilize a GradBoost-based model<sup>[2]</sup>, and (Shen, 2022) implements a voting classifier<sup>[3]</sup> for results prediction of games based on player and game data. Our models will **predict the Worlds winner** via data from the **Worlds patch (14.18)<sup>[5]</sup>**. First, we will identify meta champions; then, we will analyze **strong players** based on the meta. We will calculate **role impact** to proportionate player strength, **aggregating** to predict team performance at Worlds. Our dataset includes statistics from players and overall games from this year in .csv format.
+_League of Legends_ is a globally popular esports game<sup>[4]</sup>, with a **World Championship (Worlds)** featuring teams from major regions like **South Korea, China, Europe**, and **NA**. Current papers have analyzed League with different ML models. (Arık, 2023) studies a LightGBM classifier<sup>[1]</sup>, (Bahrololloomi et al., 2022) utilizes a GradBoost-based model<sup>[2]</sup>, and (Shen, 2022) implements a voting classifier<sup>[3]</sup> for results prediction of games based on player and game data. Our models will **predict the Worlds winner** via data from the **Worlds patch (14.18)<sup>[5]</sup>**. First, we will identify meta champions; then, we will analyze **strong players** based on the meta. We will calculate **role impact** to proportionate player strength, **aggregating** to predict team performance at Worlds. Our [dataset](https://oracleselixir.com/tools/downloads) includes statistics from players and overall games from this year in .csv format.
 """, unsafe_allow_html=True)
 
 # Problem Definition Section
@@ -54,9 +54,9 @@ st.write("""- **Problem**: Esports outcomes are difficult to predict due to evol
 st.markdown("<u><h2>Methods</h2></u>", unsafe_allow_html=True)
 
 st.markdown("<u><h4>Data Preprocessing</h4></u>", unsafe_allow_html=True)
-st.write("""- **Data Cleaning**: Remove duplicates, handle missing values, and ensure consistent formatting for champions, roles, and player stats.
-- **Feature Encoding**: Use one-hot encoding or label encoding for champions, regions, and roles.
-- **Normalization**: Normalize stats like **KDA**, **damage**, and **pick rates** to ensure consistency across datasets.
+st.write("""- **Data Cleaning**: Removes duplicates, handles missing values, and ensures consistent formatting for champions, roles, and player stats.
+- **Feature Encoding**: Uses one-hot encoding or label encoding for champions, regions, and roles.
+- **Normalization**: Normalizes stats like **KDA**, **damage**, and **pick rates** to ensure consistency across datasets.
 """)
 
 # ML Algorithms
@@ -161,7 +161,7 @@ data = {
         - Wrote the potential results and discussion section
         - Brainstormed the methods to be used for the project
         - Arranged meetings with the TA advisor
-        - reviewed slides and script for the presentation'''
+        - Reviewed slides and script for the presentation'''
     ]
 }
 # Convert to DataFrame

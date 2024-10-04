@@ -46,8 +46,8 @@ _League of Legends_ is a globally popular esports game<sup>[4]</sup>, with a **W
 
 # Problem Definition Section
 st.markdown("<u><h2>Problem Definition</h2></u>", unsafe_allow_html=True)
-st.write("""- **Problem**: Esports outcomes, especially in the League of Legends World Championships, are difficult to predict due to evolving metas, player performance, and regional differences.
-- **Motivation**: Analyzing the meta, player strengths, and role impact can provide deeper insights into team performance, making it valuable for teams, fans, and analysts.
+st.write("""- **Problem**: Esports outcomes are difficult to predict due to evolving metas, player performance, and regional differences.
+- **Motivation**: Analyzing the meta, player strengths, and role impact can provide deeper insights into team performance–a valuable asset for teams, fans, and analysts.
 """)
 
 # Methods Section
@@ -82,21 +82,21 @@ st.write("""
 - **Mean Squared Error (MSE)**: Measures the average squared difference between the predicted and actual values, applicable when predicting game outcomes or player scores.
 """)
 
-# Example of Data Display
-st.markdown("<u><h4>Data Example</h4></u>", unsafe_allow_html=True)
+# # Example of Data Display
+# st.markdown("<u><h4>Data Example</h4></u>", unsafe_allow_html=True)
 
-# Mock data (replace with real data)
-data = {
-    'Player': ['Player A', 'Player B', 'Player C', 'Player D'],
-    'KDA': [5.5, 3.4, 7.2, 6.1],
-    'Pick Rate (%)': [20.3, 25.4, 15.1, 30.2],
-    'Ban Rate (%)': [33.3, 22.8, 76.1, 34.5],
-    'Win Rate (%)': [65.2, 52.4, 70.1, 55.2],
-    'Champion': ["Rengar", "Samira", "Volibear", "Ahri"]
-}
+# # Mock data (replace with real data)
+# data = {
+#     'Player': ['Player A', 'Player B', 'Player C', 'Player D'],
+#     'KDA': [5.5, 3.4, 7.2, 6.1],
+#     'Pick Rate (%)': [20.3, 25.4, 15.1, 30.2],
+#     'Ban Rate (%)': [33.3, 22.8, 76.1, 34.5],
+#     'Win Rate (%)': [65.2, 52.4, 70.1, 55.2],
+#     'Champion': ["Rengar", "Samira", "Volibear", "Ahri"]
+# }
 
-df = pd.DataFrame(data)
-st.dataframe(df)
+# df = pd.DataFrame(data)
+# st.dataframe(df)
 
 # Project Goals Section
 st.markdown("<u><h4>Project Goals</h4></u>", unsafe_allow_html=True)
@@ -147,18 +147,21 @@ data = {
         - Brainstormed the methods to be used for the project
         - Came up with potential statistics such as KDA to analyze which would help us make our final predictions
         - Proofreading
+        - Made the presentation slides and script
         - Did the presentation video''',
         
         '''- Wrote the references section of the proposal
         - Contributed to the proposal topic brainstorming
         - Proofreading
-        - Brainstormed the methods to be used for the project''',
+        - Brainstormed the methods to be used for the project
+        - Wrote the literature reviews''',
         
         '''- Came up with potential statistics such as KDA to analyze which would help us make our final predictions
         - Wrote problem definition section
         - Wrote the potential results and discussion section
         - Brainstormed the methods to be used for the project
-        - Arranged meetings with the TA advisor'''
+        - Arranged meetings with the TA advisor
+        - reviewed slides and script for the presentation'''
     ]
 }
 # Convert to DataFrame

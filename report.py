@@ -7,7 +7,7 @@ def add_bg_from_local():
         f"""
         <style>
         .stApp {{
-            background-image: url("./static/smile.png");
+            background-image: url("./static/league_background.jpg");
             background-size: cover;
         }}
         </style>
